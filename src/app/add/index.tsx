@@ -6,6 +6,7 @@ import { styles } from "./styles";
 import { colors } from "@/styles/colors";
 
 import { Input } from "@/components/input";
+import { Button } from "@/components/button";
 import { Categories } from "@/components/categories";
 
 export default function Add(){
@@ -24,6 +25,7 @@ export default function Add(){
       <View style={styles.form}>
         <Input placeholder="Nome"/>
         <Input placeholder="Url"/>
+        <Button title="Adicionar"/>
       </View>
     </View>
   )
