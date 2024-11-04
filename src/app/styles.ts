@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native"
 import {colors} from "@/styles/colors"
+import { Link } from "@/components/link"
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 62,
+    paddingTop: 62,
   },
   title: {
    color: colors.green[900],
@@ -22,4 +23,13 @@ export const styles = StyleSheet.create({
     height: 32,
     width: 38,
   },
+  links: {
+    borderTopWidth: 1,
+    borderTopColor: colors.gray[600]
+  },
+  LinksContent: {
+    gap:20,
+    padding:24,
+    paddingBottom:100,
+  }
 })
