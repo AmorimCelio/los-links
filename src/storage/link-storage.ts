@@ -26,5 +26,16 @@ async function save(newLink: LinkStorage) {
     throw error
   }
 }
+async function remove(id: string) {
+  try{
+    const storage = await get()
 
-export const linkStorage = { get, save}
+    const updated = storage.filter((link) => link.id !== id)
+
+    await AsyncStorage.setItem(LINKS_STORAGE_KEY, JSON.stringify(updated))
+  }catch (error) {
+    throw error
+  }
+}
+
+export const linkStorage = { get, save, remove}
