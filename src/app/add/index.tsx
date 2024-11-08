@@ -5,6 +5,7 @@ import { router } from "expo-router";
 
 import { styles } from "./styles";
 import { colors } from "@/styles/colors";
+import { linkStorage } from "@/storage/link-storage";
 
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
@@ -15,7 +16,8 @@ export default function Add(){
   const [name, setName] = useState("")
   const [url, setUrl] = useState("")
 
-  function handleAdd(){
+  async function handleAdd(){
+    try{
     if(!category){
       return Alert.alert("Categoria", "Selecione a categoria")
     }
@@ -27,7 +29,17 @@ export default function Add(){
     if(!url.trim()){
       return Alert.alert("URL", "Informe a URL")
     }
-    console.log({category, name, url})
+    
+    await linkStorage.save({
+      id: new Date().getTime().toString(),
+      name,
+      url,
+      category
+    })
+    }catch (error) {
+    Alert.alert("Erro", "Não foi possível salvar o link")
+    console.log(error)
+  }
   }
 
   return(
@@ -44,7 +56,7 @@ export default function Add(){
 
       <View style={styles.form}>
         <Input placeholder="Nome" onChangeText={setName}/>
-        <Input placeholder="URL" onChangeText={setUrl} autoCorrect={false}/>
+        <Input placeholder="URL" onChangeText={setUrl} autoCorrect={false} autoCapitalize="none"/>
         <Button title="Adicionar" onPress={handleAdd}/>
       </View>
     </View>
